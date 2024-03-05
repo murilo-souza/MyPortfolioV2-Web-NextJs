@@ -5,6 +5,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { TabItem } from './tab-item'
 import { useState } from 'react'
 import { TabContent } from './tab-content'
+import { SkillBadge } from '../skill-badge'
 
 export function SkillsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
@@ -30,16 +31,36 @@ export function SkillsFilterTabs() {
               isSelected={currentTab === 'tab3'}
             />
             <TabItem
-              value="tab3"
+              value="tab4"
               title="Serviços"
-              isSelected={currentTab === 'tab3'}
+              isSelected={currentTab === 'tab4'}
             />
           </Tabs.List>
           <TabContent value="tab1">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
-          </TabContent>
-          <TabContent value="tab2">
-            <h1>Hel11ws1lo</h1>
+            <div className="flex flex-wrap gap-2">
+              <SkillBadge title="HTML" />
+              <SkillBadge title="CSS" />
+              <SkillBadge title="JavaScript" />
+              <SkillBadge title="TypeScript" />
+              <SkillBadge title="ReactJS" />
+              <SkillBadge title="NextJS" />
+              <SkillBadge title="HTML" />
+              <SkillBadge title="CSS" />
+              <SkillBadge title="JavaScript" />
+              <SkillBadge title="TypeScript" />
+              <SkillBadge title="ReactJS" />
+              <SkillBadge title="NextJS" />
+              <SkillBadge title="TailwindCSS" />
+              <SkillBadge title="Prisma" />
+              <SkillBadge title="Git" />
+              <SkillBadge title="GitHub" />
+              <SkillBadge title="Figma" />
+              <SkillBadge title="TailwindCSS" />
+              <SkillBadge title="Prisma" />
+              <SkillBadge title="Git" />
+              <SkillBadge title="GitHub" />
+              <SkillBadge title="Figma" />
+            </div>
           </TabContent>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar

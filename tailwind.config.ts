@@ -10,6 +10,7 @@ const config: Config = {
 
       colors: {
         github: '#171515',
+        skills: '#7C3AED',
       },
     },
   },
