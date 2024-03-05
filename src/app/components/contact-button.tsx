@@ -16,7 +16,9 @@ export function ContactButton({
       <div className="rounded-md bg-violet-600">
         <Icon className="h-12 w-12 text-zinc-200 p-1" />
       </div>
-      <span className="text-xl font-medium text-zinc-100">{title}</span>
+      <span className="text-xl font-medium text-zinc-100 text-nowrap">
+        {title}
+      </span>
     </a>
   )
 }
