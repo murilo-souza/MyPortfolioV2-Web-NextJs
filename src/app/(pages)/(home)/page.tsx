@@ -1,17 +1,37 @@
 import { ContactButton } from '@/app/components/contact-button'
 import { Github, Linkedin, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 export default function Home() {
   return (
     <>
-      <h1 className="text-3xl font-medium text-zinc-900 dark:text-zinc-100">
+      <h1
+        className={twMerge(
+          'hidden',
+          'lg:block lg:text-3xl lg:font-medium lg:text-zinc-900',
+          'dark:text-zinc-100',
+        )}
+      >
         Inicio
         <div className="w-full h-px bg-zinc-600" />
       </h1>
 
-      <div className="mt-5 grid grid-cols-2 gap-12 items-center justify-center">
+      <div
+        className={twMerge(
+          'mt-5',
+          'lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:justify-center',
+        )}
+      >
         <div>
+          <Image
+            src="/me.png"
+            width={486}
+            height={501}
+            quality={100}
+            alt=""
+            className="lg:hidden mb-3"
+          />
           <h2 className="font-semibold text-2xl text-zinc-100">Sobre mim</h2>
           <br />
           <p className="text-zinc-100 text-justify text-xl">
@@ -29,13 +49,20 @@ export default function Home() {
             buscando aprender e evoluir na minha jornada profissional.
           </p>
         </div>
-        <Image src="/me.png" width={486} height={501} quality={100} alt="" />
+        <Image
+          src="/me.png"
+          width={486}
+          height={501}
+          quality={100}
+          alt=""
+          className="hidden lg:block"
+        />
 
-        <div>
+        <div className="mt-7">
           <h2 className="text-zinc-100 text-2xl font-semibold">
             Informações de contato
           </h2>
-          <div className="grid grid-cols-2 mt-5 gap-5">
+          <div className="lg:grid lg:grid-cols-2 flex flex-col mt-5 gap-5">
             <ContactButton
               redirectTo="https://www.linkedin.com/in/murilo-leme-de-souza/"
               icon={Linkedin}
