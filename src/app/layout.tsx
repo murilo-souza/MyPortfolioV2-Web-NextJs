@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Sidebar } from './components/Sidebar'
+import { twMerge } from 'tailwind-merge'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +19,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen lg:grid lg:grid-cols-app dark:bg-zinc-900">
+        <div
+          className={twMerge(
+            'min-h-screen',
+            'lg:grid lg:grid-cols-app',
+            'dark:bg-zinc-900',
+          )}
+        >
           <Sidebar />
-          <main>{children}</main>
+          <main
+            className={twMerge(
+              'max-w-[100vw] px-4 pb-12 pt-24',
+              'lg:col-start-2 lg:px-8 lg:pt-8',
+            )}
+          >
+            {children}
+          </main>
         </div>
       </body>
     </html>
