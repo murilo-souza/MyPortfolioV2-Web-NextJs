@@ -1,7 +1,12 @@
 import { ContactButton } from '@/app/components/contact-button'
 import { Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
+
+export const metadata: Metadata = {
+  title: 'Inicio',
+}
 
 export default function Home() {
   return (
