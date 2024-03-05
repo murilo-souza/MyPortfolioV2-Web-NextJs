@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { Logo } from './logo'
 import { Button } from '../button'
-import { Menu, Search } from 'lucide-react'
+import { Download, Menu, Search } from 'lucide-react'
 import * as Input from '../input'
 import { MainNavigation } from './MainNavigation'
 
@@ -38,6 +38,16 @@ export function Sidebar() {
         </Input.Root>
 
         <MainNavigation />
+
+        <div className="mt-auto">
+          <a
+            href="#"
+            className="flex items-center justify-center gap-3 bg-violet-600 px-5 py-4 rounded-md"
+          >
+            <Download className="h-5 w-5 text-zinc-200" />
+            <span>Download meu CV</span>
+          </a>
+        </div>
       </Collapsible.Content>
     </Collapsible.Root>
   )

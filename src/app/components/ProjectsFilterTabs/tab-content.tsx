@@ -1,6 +1,5 @@
 import * as Tabs from '@radix-ui/react-tabs'
 import { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
 
 interface TabContentProps {
   children: ReactNode
@@ -9,7 +8,7 @@ interface TabContentProps {
 
 export function TabContent({ value, children }: TabContentProps) {
   return (
-    <Tabs.Content value={value} className={twMerge('mt-5')}>
+    <Tabs.Content value={value} className="mt-5">
       {children}
     </Tabs.Content>
   )
