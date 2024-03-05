@@ -5,6 +5,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { TabItem } from './tab-item'
 import { useState } from 'react'
 import { TabContent } from './tab-content'
+import { CardProject } from '../card-project'
 
 export function ProjectsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
@@ -31,7 +32,15 @@ export function ProjectsFilterTabs() {
             />
           </Tabs.List>
           <TabContent value="tab1">
-            <h1>Hello</h1>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <CardProject />
+              <CardProject />
+              <CardProject />
+              <CardProject />
+              <CardProject />
+              <CardProject />
+              <CardProject />
+            </div>
           </TabContent>
           <TabContent value="tab2">
             <h1>Hel11ws1lo</h1>
