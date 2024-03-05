@@ -4,8 +4,9 @@ import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { TabItem } from './tab-item'
 import { useState } from 'react'
+import { TabContent } from './tab-content'
 
-export function SettingsTabs() {
+export function ProjectsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
 
   return (
@@ -29,15 +30,12 @@ export function SettingsTabs() {
               isSelected={currentTab === 'tab3'}
             />
           </Tabs.List>
-          <Tabs.Content value="tab1">
-            <h1>Teste1</h1>
-          </Tabs.Content>
-          <Tabs.Content value="tab2">
-            <h1>Teste2</h1>
-          </Tabs.Content>
-          <Tabs.Content value="tab3">
-            <h1>Teste3</h1>
-          </Tabs.Content>
+          <TabContent value="tab1">
+            <h1>Hello</h1>
+          </TabContent>
+          <TabContent value="tab2">
+            <h1>Hel11ws1lo</h1>
+          </TabContent>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
           className="flex h-0.5 translate-y-1.5 touch-none select-none flex-col bg-zinc-100"
