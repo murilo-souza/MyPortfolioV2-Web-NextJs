@@ -45,7 +45,7 @@ export function Sidebar() {
             className="flex items-center justify-center gap-3 bg-violet-600 px-5 py-4 rounded-md"
           >
             <Download className="h-5 w-5 text-zinc-200" />
-            <span>Download meu CV</span>
+            <span className="font-medium text-zinc-200">Download meu CV</span>
           </a>
         </div>
       </Collapsible.Content>
