@@ -4,11 +4,11 @@ import Image from 'next/image'
 import { Button } from './button'
 import * as Dialog from '@radix-ui/react-dialog'
 import { twMerge } from 'tailwind-merge'
-import { Github, TestTube2 } from 'lucide-react'
+import { Github, TestTube2, X } from 'lucide-react'
 
 export function CardProject() {
   return (
-    <Dialog.Root>
+    <Dialog.Root modal>
       <div className="p-1 bg-zinc-800 border border-zinc-700 rounded-[10px] flex flex-col gap-3">
         <Image
           src="/cover.png"
@@ -27,11 +27,11 @@ export function CardProject() {
           </Button>
         </Dialog.Trigger>
         <Dialog.Portal>
-          <Dialog.Overlay className="bg-black/30 data-[state=open]:animate-overlayShow fixed inset-0 bottom-0">
+          <Dialog.Overlay className="bg-black/30 data-[state=open]:animate-overlayShow fixed inset-0 bottom-0 z-40">
             <Dialog.Content
               className={twMerge(
                 'bg-zinc-800 border border-zinc-700 p-2 flex flex-col gap-2 overflow-y-auto',
-                'data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] lg:max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[10px] focus:outline-none',
+                'data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] w-[100vw] h-[100vh] lg:max-w-[450px] lg:max-h-[90vh] translate-x-[-50%] translate-y-[-50%] rounded-[10px] focus:outline-none',
               )}
             >
               <Image
@@ -64,7 +64,7 @@ export function CardProject() {
                 </ul>
               </Dialog.Description>
 
-              <div className="flex items-center justify-between mt-3">
+              <div className="flex items-center justify-between mt-auto">
                 <a
                   href=""
                   className="flex items-center justify-center gap-2 bg-github px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
@@ -81,6 +81,11 @@ export function CardProject() {
                   Testar
                 </a>
               </div>
+              <Dialog.Close asChild>
+                <button className="absolute top-5 right-5 outline-none">
+                  <X className="h-7 w-7 text-zinc-200" />
+                </button>
+              </Dialog.Close>
             </Dialog.Content>
           </Dialog.Overlay>
         </Dialog.Portal>
