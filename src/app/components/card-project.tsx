@@ -5,24 +5,27 @@ import { Button } from './button'
 import * as Dialog from '@radix-ui/react-dialog'
 import { twMerge } from 'tailwind-merge'
 import { Github, TestTube2, X } from 'lucide-react'
+import { CardProps } from './ProjectsFilterTabs'
 
-export function CardProject() {
+export function CardProject(card: CardProps) {
+  const StackArray = card.stacks.split(', ')
+
   return (
     <Dialog.Root modal>
       <div className="p-1 bg-zinc-800 border border-zinc-700 rounded-[10px] flex flex-col gap-3">
         <Image
-          src="/cover.png"
+          src={card.bannerUrl}
           width={290}
           height={203}
           quality={100}
           alt="project"
-          className="w-full"
+          className="w-full h-full rounded-md overflow-hidden"
         />
 
-        <h2 className="text-xl font-medium">Ignite Shop</h2>
+        <h2 className="text-xl font-medium">{card.title}</h2>
 
         <Dialog.Trigger asChild>
-          <Button variant="primary" className="w-full">
+          <Button variant="primary" className="w-full mt-auto">
             Detalhes
           </Button>
         </Dialog.Trigger>
@@ -35,51 +38,48 @@ export function CardProject() {
               )}
             >
               <Image
-                src="/cover.png"
+                src={card.bannerUrl}
                 width={330}
                 height={243}
                 quality={100}
                 alt="project"
-                className="w-full"
+                className="w-full rounded-md"
               />
               <Dialog.Title className="text-2xl text-zinc-200 font-semibold">
-                Ignite Shop
+                {card.title}
               </Dialog.Title>
-              <Dialog.Description className="flex flex-col gap-2">
-                <p className="text-zinc-200">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  leo nunc, sagittis ultrices tempus eget, scelerisque non
-                  sapien. Etiam ac maximus neque, et viverra odio.
-                </p>
+              <Dialog.Description className="flex flex-col gap-4">
+                <p className="text-zinc-200">{card.description}</p>
 
                 <h3 className="text-zinc-200 text-xl font-semibold">
                   Principais Tecnologias
                 </h3>
 
                 <ul className="list-disc ml-5 text-zinc-200">
-                  <li>Next js</li>
-                  <li>Next js</li>
-                  <li>Next js</li>
-                  <li>Next js</li>
+                  {StackArray.map((stack) => (
+                    <li key={stack}>{stack}</li>
+                  ))}
                 </ul>
               </Dialog.Description>
 
-              <div className="flex items-center justify-between mt-auto">
+              <div className="flex items-center justify-between lg:mt-10 mt-auto">
                 <a
-                  href=""
+                  href={card.repoUrl}
                   className="flex items-center justify-center gap-2 bg-github px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
                 >
                   <Github />
                   Repositório
                 </a>
 
-                <a
-                  href=""
-                  className="flex items-center justify-center gap-2 bg-violet-600 px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
-                >
-                  <TestTube2 />
-                  Testar
-                </a>
+                {card.testUrl && (
+                  <a
+                    href={card.testUrl}
+                    className="flex items-center justify-center gap-2 bg-violet-600 px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
+                  >
+                    <TestTube2 />
+                    Testar
+                  </a>
+                )}
               </div>
               <Dialog.Close asChild>
                 <button className="absolute top-5 right-5 outline-none">

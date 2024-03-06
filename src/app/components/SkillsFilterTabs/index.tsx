@@ -6,9 +6,30 @@ import { TabItem } from './tab-item'
 import { useState } from 'react'
 import { TabContent } from './tab-content'
 import { SkillBadge } from '../skill-badge'
+import { gql, useQuery } from '@apollo/client'
+
+const GET_SKILL_QUERY = gql`
+  query MyQuery {
+    skills(first: 100) {
+      id
+      skill
+      tag
+    }
+  }
+`
+
+interface SkillProps {
+  id: string
+  skill: string
+  tag: 'front' | 'back' | 'service' | 'both'
+}
 
 export function SkillsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
+
+  const { data } = useQuery<{ skills: SkillProps[] }>(GET_SKILL_QUERY, {
+    fetchPolicy: 'cache-and-network',
+  })
 
   return (
     <Tabs.Root value={currentTab} onValueChange={setCurrentTab}>
@@ -38,28 +59,30 @@ export function SkillsFilterTabs() {
           </Tabs.List>
           <TabContent value="tab1">
             <div className="flex flex-wrap gap-2">
-              <SkillBadge title="HTML" />
-              <SkillBadge title="CSS" />
-              <SkillBadge title="JavaScript" />
-              <SkillBadge title="TypeScript" />
-              <SkillBadge title="ReactJS" />
-              <SkillBadge title="NextJS" />
-              <SkillBadge title="HTML" />
-              <SkillBadge title="CSS" />
-              <SkillBadge title="JavaScript" />
-              <SkillBadge title="TypeScript" />
-              <SkillBadge title="ReactJS" />
-              <SkillBadge title="NextJS" />
-              <SkillBadge title="TailwindCSS" />
-              <SkillBadge title="Prisma" />
-              <SkillBadge title="Git" />
-              <SkillBadge title="GitHub" />
-              <SkillBadge title="Figma" />
-              <SkillBadge title="TailwindCSS" />
-              <SkillBadge title="Prisma" />
-              <SkillBadge title="Git" />
-              <SkillBadge title="GitHub" />
-              <SkillBadge title="Figma" />
+              {data?.skills.map((item) => (
+                <SkillBadge key={item.id} title={item.skill} />
+              ))}
+            </div>
+          </TabContent>
+          <TabContent value="tab2">
+            <div className="flex flex-wrap gap-2">
+              {data?.skills
+                .filter((item) => item.tag === 'front' || item.tag === 'both')
+                .map((item) => <SkillBadge key={item.id} title={item.skill} />)}
+            </div>
+          </TabContent>
+          <TabContent value="tab3">
+            <div className="flex flex-wrap gap-2">
+              {data?.skills
+                .filter((item) => item.tag === 'back' || item.tag === 'both')
+                .map((item) => <SkillBadge key={item.id} title={item.skill} />)}
+            </div>
+          </TabContent>
+          <TabContent value="tab4">
+            <div className="flex flex-wrap gap-2">
+              {data?.skills
+                .filter((item) => item.tag === 'service')
+                .map((item) => <SkillBadge key={item.id} title={item.skill} />)}
             </div>
           </TabContent>
         </ScrollArea.Viewport>

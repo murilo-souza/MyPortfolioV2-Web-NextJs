@@ -6,10 +6,41 @@ import { TabItem } from './tab-item'
 import { useState } from 'react'
 import { TabContent } from './tab-content'
 import { CardProject } from '../card-project'
+import { gql, useQuery } from '@apollo/client'
+
+const GET_CARDS_QUERY = gql`
+  query MyQuery {
+    cards(first: 100, orderBy: testUrl_ASC) {
+      bannerUrl
+      id
+      title
+      description
+      testUrl
+      repoUrl
+      stacks
+      tag
+    }
+  }
+`
+
+export interface CardProps {
+  bannerUrl: string
+  title: string
+  description: string
+  repoUrl: string
+  testUrl: string | null
+  stacks: string
+  tag: 'web' | 'mobile'
+}
 
 export function ProjectsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
 
+  const { data } = useQuery<{ cards: CardProps[] }>(GET_CARDS_QUERY, {
+    fetchPolicy: 'cache-and-network',
+  })
+
+  console.log(data?.cards)
   return (
     <Tabs.Root value={currentTab} onValueChange={setCurrentTab}>
       <ScrollArea.Root className="w-full" type="scroll">
@@ -33,17 +64,55 @@ export function ProjectsFilterTabs() {
           </Tabs.List>
           <TabContent value="tab1">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <CardProject />
-              <CardProject />
-              <CardProject />
-              <CardProject />
-              <CardProject />
-              <CardProject />
-              <CardProject />
+              {data?.cards.map((card) => (
+                <CardProject
+                  key={card.title}
+                  bannerUrl={card.bannerUrl}
+                  title={card.title}
+                  description={card.description}
+                  repoUrl={card.repoUrl}
+                  testUrl={card.testUrl}
+                  stacks={card.stacks}
+                  tag={card.tag}
+                />
+              ))}
             </div>
           </TabContent>
           <TabContent value="tab2">
-            <h1>Hel11ws1lo</h1>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {data?.cards
+                .filter((card) => card.tag === 'web')
+                .map((card) => (
+                  <CardProject
+                    key={card.title}
+                    bannerUrl={card.bannerUrl}
+                    title={card.title}
+                    description={card.description}
+                    repoUrl={card.repoUrl}
+                    testUrl={card.testUrl}
+                    stacks={card.stacks}
+                    tag={card.tag}
+                  />
+                ))}
+            </div>
+          </TabContent>
+          <TabContent value="tab3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {data?.cards
+                .filter((card) => card.tag === 'mobile')
+                .map((card) => (
+                  <CardProject
+                    key={card.title}
+                    bannerUrl={card.bannerUrl}
+                    title={card.title}
+                    description={card.description}
+                    repoUrl={card.repoUrl}
+                    testUrl={card.testUrl}
+                    stacks={card.stacks}
+                    tag={card.tag}
+                  />
+                ))}
+            </div>
           </TabContent>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar

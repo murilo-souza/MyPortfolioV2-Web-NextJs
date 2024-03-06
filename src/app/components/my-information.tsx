@@ -7,27 +7,23 @@ import { Github, Linkedin, Mail, Phone } from 'lucide-react'
 import { gql, useQuery } from '@apollo/client'
 
 interface MeProps {
-  age: string
-  avatarUrl: string
-  eMail: string
-  freelancer: boolean
   me: string
+  eMail: string
   phone: string
-  profession: string
-  backgroundUrl: string
+  linkedInUrl: string
+  gitHubUrl: string
+  phoneToWhatsapp: string
 }
 
 const GET_MY_INFO_QUERY = gql`
   query MyQuery {
     information(where: { id: "cleanvw285uj00blrgj4dcli7" }) {
-      age
-      avatarUrl
-      eMail
-      freelancer
       me
+      eMail
       phone
-      profession
-      backgroundUrl
+      linkedInUrl
+      gitHubUrl
+      phoneToWhatsapp
     }
   }
 `
@@ -58,17 +54,7 @@ export function MyInformation() {
         <h2 className="font-semibold text-2xl text-zinc-100">Sobre mim</h2>
         <br />
         <p className="text-zinc-100 text-justify text-xl">
-          Olá! 👋 Sou Murilo Leme de Souza, um desenvolvedor front-end com
-          experiência sólida em criar experiências web e mobile incríveis.
-          Minhas habilidades abrangem um conjunto diversificado de tecnologias,
-          permitindo-me construir aplicações robustas e escaláveis. Também tenho
-          conhecimento com algumas tecnologias Back-end.
-          <br />
-          <br />
-          Estou empenhado em criar experiências excepcionais para os usuários,
-          utilizando meu conhecimento em tecnologias modernas e práticas de
-          desenvolvimento ágeis. Sou motivado por desafios e estou sempre
-          buscando aprender e evoluir na minha jornada profissional.
+          {data?.information.me}
         </p>
       </div>
       <Image
@@ -86,24 +72,24 @@ export function MyInformation() {
         </h2>
         <div className="lg:grid lg:grid-cols-2 flex flex-col mt-5 gap-5">
           <ContactButton
-            redirectTo="https://www.linkedin.com/in/murilo-leme-de-souza/"
+            redirectTo={data?.information.linkedInUrl ?? ''}
             icon={Linkedin}
             title="LinkedIn"
           />
           <ContactButton
-            redirectTo="mailto:murilo.l.souza232@gmail.com"
+            redirectTo={`mailto:${data?.information.eMail}`}
             icon={Mail}
-            title="murilo.l.souza232@gmail.com"
+            title={data?.information.eMail ?? ''}
           />
           <ContactButton
-            redirectTo="https://github.com/murilo-souza"
+            redirectTo={data?.information.gitHubUrl ?? ''}
             icon={Github}
             title="GitHub"
           />
           <ContactButton
-            redirectTo="https://api.whatsapp.com/send?phone=5515991042412&app_absent=1"
+            redirectTo={`https://api.whatsapp.com/send?phone=${data?.information.phoneToWhatsapp}&app_absent=1`}
             icon={Phone}
-            title="+55 (15) 99104-2412"
+            title={data?.information.phone ?? ''}
           />
         </div>
       </div>
