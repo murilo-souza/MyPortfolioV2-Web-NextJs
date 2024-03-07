@@ -7,7 +7,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['user-images.githubusercontent.com'],
+    domains: [
+      'user-images.githubusercontent.com',
+      'private-user-images.githubusercontent.com',
+      'github.com',
+    ],
   },
 }
 

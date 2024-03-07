@@ -19,7 +19,7 @@ export function CardProject(card: CardProps) {
           height={203}
           quality={100}
           alt="project"
-          className="w-full h-full rounded-md overflow-hidden"
+          className="w-full h-full rounded-md overflow-hidden object-cover"
         />
 
         <h2 className="text-xl font-medium">{card.title}</h2>
