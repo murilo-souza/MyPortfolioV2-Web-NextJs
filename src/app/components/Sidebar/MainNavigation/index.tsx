@@ -8,7 +8,7 @@ export function MainNavigation() {
       <NavItem title="Projetos" icon={SquareStack} path="/projects" />
       <NavItem title="Habilidades" icon={Library} path="/skills" />
       <NavItem title="Certificações" icon={Award} path="/certifications" />
-      <NavItem title="Experiência" icon={Target} path="/experience" />
+      <NavItem title="Experiência" icon={Target} path="/experiences" />
     </nav>
   )
 }
