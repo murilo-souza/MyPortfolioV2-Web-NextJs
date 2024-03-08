@@ -32,7 +32,7 @@ export function SkillsFilterTabs() {
   const { data, loading } = useQuery<{ skills: SkillProps[] }>(
     GET_SKILL_QUERY,
     {
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
     },
   )
 
@@ -70,16 +70,11 @@ export function SkillsFilterTabs() {
             <ContentWrapper>
               {loading ? (
                 <>
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
-                  <SkeletonSkills />
+                  {Array(12)
+                    .fill(0)
+                    .map((_, index) => (
+                      <SkeletonSkills key={index} />
+                    ))}
                 </>
               ) : (
                 <>

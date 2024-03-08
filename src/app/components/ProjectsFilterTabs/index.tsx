@@ -39,7 +39,7 @@ export function ProjectsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
 
   const { data, loading } = useQuery<{ cards: CardProps[] }>(GET_CARDS_QUERY, {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'cache-first',
   })
 
   return (
