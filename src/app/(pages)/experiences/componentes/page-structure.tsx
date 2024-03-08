@@ -3,6 +3,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { ContentWrapper } from '../../certifications/components/content-wrapper'
 import { KnowledgeCard } from '@/app/components/knowledge-card'
+import { SkeletonCertification } from '@/app/components/Loader/skeleton-certification'
 
 interface KnowledgeCardProps {
   title: string
@@ -26,7 +27,7 @@ const GET_EXPERIENCES_QUERY = gql`
 `
 
 export function PageStructure() {
-  const { data } = useQuery<{ experiences: KnowledgeCardProps[] }>(
+  const { data, loading } = useQuery<{ experiences: KnowledgeCardProps[] }>(
     GET_EXPERIENCES_QUERY,
     {
       fetchPolicy: 'cache-and-network',
@@ -37,16 +38,25 @@ export function PageStructure() {
     <div className="mt-14">
       <ContentWrapper title="Experiência profissional">
         <div className="grid grid-cols-2 gap-5">
-          {data?.experiences.map((experience) => (
-            <KnowledgeCard
-              key={experience.title}
-              college={experience.company}
-              description={experience.description}
-              endDate={experience.endDate}
-              startDate={experience.startDate}
-              title={experience.title}
-            />
-          ))}
+          {loading ? (
+            <>
+              <SkeletonCertification />
+              <SkeletonCertification />
+            </>
+          ) : (
+            <>
+              {data?.experiences.map((experience) => (
+                <KnowledgeCard
+                  key={experience.title}
+                  college={experience.company}
+                  description={experience.description}
+                  endDate={experience.endDate}
+                  startDate={experience.startDate}
+                  title={experience.title}
+                />
+              ))}
+            </>
+          )}
         </div>
       </ContentWrapper>
     </div>

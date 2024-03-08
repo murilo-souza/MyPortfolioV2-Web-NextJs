@@ -1,3 +1,5 @@
+import { useToogleShowMore } from '../hooks/useToogleShowMore'
+
 interface KnowledgeCardProps {
   title: string
   description: string
@@ -13,6 +15,11 @@ export function KnowledgeCard({
   endDate,
   college,
 }: KnowledgeCardProps) {
+  const { text, isShowingMore, toogleShowMore } = useToogleShowMore(
+    description,
+    166,
+  )
+
   return (
     <div className="border border-zinc-600 p-4 rounded-md max-w-[40vw]">
       <div className="mb-5">
@@ -22,7 +29,14 @@ export function KnowledgeCard({
         </span>
       </div>
 
-      <p className="text-zinc-200">{description}</p>
+      <p className="text-zinc-200">
+        {text}
+        {description.length > 166 && (
+          <button className="text-violet-400" onClick={toogleShowMore}>
+            {isShowingMore ? 'Mostar menos' : 'Mostrar mais'}
+          </button>
+        )}
+      </p>
     </div>
   )
 }
