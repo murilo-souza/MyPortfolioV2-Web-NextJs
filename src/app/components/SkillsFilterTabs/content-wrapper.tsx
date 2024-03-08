@@ -1,4 +1,6 @@
-import { ReactNode } from 'react'
+'use client'
+
+import { ReactNode, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const container = {
@@ -6,21 +8,33 @@ const container = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.1,
-      staggerChildren: 0.1,
+      staggerChildren: 0.03,
     },
   },
 }
 
 export function ContentWrapper({ children }: { children: ReactNode }) {
+  const [animationPlayed, setAnimationPlayed] = useState(false)
+
+  const handleAnimationComplete = () => {
+    setAnimationPlayed(true)
+  }
+
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="flex flex-wrap gap-2"
-    >
-      {children}
-    </motion.div>
+    <>
+      {animationPlayed ? (
+        <div className="flex flex-wrap gap-2">{children}</div>
+      ) : (
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-wrap gap-2"
+          onAnimationComplete={handleAnimationComplete}
+        >
+          {children}
+        </motion.div>
+      )}
+    </>
   )
 }
