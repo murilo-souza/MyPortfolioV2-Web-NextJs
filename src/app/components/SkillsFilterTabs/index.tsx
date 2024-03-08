@@ -10,7 +10,7 @@ import { gql, useQuery } from '@apollo/client'
 
 const GET_SKILL_QUERY = gql`
   query MyQuery {
-    skills(first: 100) {
+    skills(first: 100, orderBy: skill_ASC) {
       id
       skill
       tag

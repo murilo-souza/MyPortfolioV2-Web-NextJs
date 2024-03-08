@@ -48,7 +48,7 @@ export function CardProject(card: CardProps) {
               <Dialog.Title className="text-2xl text-zinc-200 font-semibold">
                 {card.title}
               </Dialog.Title>
-              <Dialog.Description className="flex flex-col gap-4">
+              <Dialog.Description className="flex flex-col gap-4 mb-8">
                 <p className="text-zinc-200">{card.description}</p>
 
                 <h3 className="text-zinc-200 text-xl font-semibold">
@@ -62,9 +62,10 @@ export function CardProject(card: CardProps) {
                 </ul>
               </Dialog.Description>
 
-              <div className="flex items-center justify-between lg:mt-10 mt-auto">
+              <div className="flex items-center justify-between mt-auto">
                 <a
                   href={card.repoUrl}
+                  target="_blank"
                   className="flex items-center justify-center gap-2 bg-github px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
                 >
                   <Github />
@@ -74,6 +75,7 @@ export function CardProject(card: CardProps) {
                 {card.testUrl && (
                   <a
                     href={card.testUrl}
+                    target="_blank"
                     className="flex items-center justify-center gap-2 bg-violet-600 px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
                   >
                     <TestTube2 />

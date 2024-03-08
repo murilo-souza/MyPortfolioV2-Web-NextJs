@@ -10,7 +10,7 @@ import { gql, useQuery } from '@apollo/client'
 
 const GET_CARDS_QUERY = gql`
   query MyQuery {
-    cards(first: 100, orderBy: testUrl_ASC) {
+    cards(first: 100, orderBy: createdAt_DESC) {
       bannerUrl
       id
       title
@@ -40,12 +40,11 @@ export function ProjectsFilterTabs() {
     fetchPolicy: 'cache-and-network',
   })
 
-  console.log(data?.cards)
   return (
     <Tabs.Root value={currentTab} onValueChange={setCurrentTab}>
       <ScrollArea.Root className="w-full" type="scroll">
         <ScrollArea.Viewport className="w-full overflow-x-scroll">
-          <Tabs.List className="mt-6 flex w-full items-center gap-4 border-b border-zinc-200 dark:border-zinc-700">
+          <Tabs.List className="mt-6 flex w-full items-center gap-4 border-b border-zinc-200 dark:border-zinc-700 sticky top-0">
             <TabItem
               value="tab1"
               title="Todos"
