@@ -6,13 +6,25 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { twMerge } from 'tailwind-merge'
 import { Github, TestTube2, X } from 'lucide-react'
 import { CardProps } from './ProjectsFilterTabs'
+import { motion } from 'framer-motion'
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+}
 
 export function CardProject(card: CardProps) {
   const StackArray = card.stacks.split(', ')
 
   return (
     <Dialog.Root modal>
-      <div className="p-1 bg-zinc-800 border border-zinc-700 rounded-[10px] flex flex-col gap-3">
+      <motion.div
+        variants={item}
+        className="p-1 bg-zinc-800 border border-zinc-700 rounded-[10px] flex flex-col gap-3"
+      >
         <Image
           src={card.bannerUrl}
           width={290}
@@ -91,7 +103,7 @@ export function CardProject(card: CardProps) {
             </Dialog.Content>
           </Dialog.Overlay>
         </Dialog.Portal>
-      </div>
+      </motion.div>
     </Dialog.Root>
   )
 }

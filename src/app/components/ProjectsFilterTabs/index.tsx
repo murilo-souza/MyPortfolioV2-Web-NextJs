@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { TabContent } from './tab-content'
 import { CardProject } from '../card-project'
 import { gql, useQuery } from '@apollo/client'
+import { ContentWrapper } from './content-wrapper'
 
 const GET_CARDS_QUERY = gql`
   query MyQuery {
@@ -62,7 +63,7 @@ export function ProjectsFilterTabs() {
             />
           </Tabs.List>
           <TabContent value="tab1">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <ContentWrapper>
               {data?.cards.map((card) => (
                 <CardProject
                   key={card.title}
@@ -75,10 +76,10 @@ export function ProjectsFilterTabs() {
                   tag={card.tag}
                 />
               ))}
-            </div>
+            </ContentWrapper>
           </TabContent>
           <TabContent value="tab2">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <ContentWrapper>
               {data?.cards
                 .filter((card) => card.tag === 'web')
                 .map((card) => (
@@ -93,10 +94,10 @@ export function ProjectsFilterTabs() {
                     tag={card.tag}
                   />
                 ))}
-            </div>
+            </ContentWrapper>
           </TabContent>
           <TabContent value="tab3">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <ContentWrapper>
               {data?.cards
                 .filter((card) => card.tag === 'mobile')
                 .map((card) => (
@@ -111,7 +112,7 @@ export function ProjectsFilterTabs() {
                     tag={card.tag}
                   />
                 ))}
-            </div>
+            </ContentWrapper>
           </TabContent>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
