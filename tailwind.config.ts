@@ -6,6 +6,7 @@ const config: Config = {
     extend: {
       gridTemplateColumns: {
         app: 'minmax(18rem, 20rem) 1fr',
+        certification: '45% 10% 45%',
       },
 
       colors: {
