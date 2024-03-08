@@ -2,12 +2,13 @@
 
 import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { TabItem } from './tab-item'
+import { TabItem } from '../Tabs/tab-item'
 import { useState } from 'react'
-import { TabContent } from './tab-content'
+import { TabContent } from '../Tabs/tab-content'
 import { SkillBadge } from '../skill-badge'
 import { gql, useQuery } from '@apollo/client'
 import { ContentWrapper } from './content-wrapper'
+import { SkeletonSkills } from '../Loader/skeleton-skills'
 
 const GET_SKILL_QUERY = gql`
   query MyQuery {
@@ -28,9 +29,12 @@ interface SkillProps {
 export function SkillsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
 
-  const { data } = useQuery<{ skills: SkillProps[] }>(GET_SKILL_QUERY, {
-    fetchPolicy: 'cache-and-network',
-  })
+  const { data, loading } = useQuery<{ skills: SkillProps[] }>(
+    GET_SKILL_QUERY,
+    {
+      fetchPolicy: 'cache-and-network',
+    },
+  )
 
   return (
     <Tabs.Root value={currentTab} onValueChange={setCurrentTab}>
@@ -38,21 +42,25 @@ export function SkillsFilterTabs() {
         <ScrollArea.Viewport className="w-full overflow-x-scroll">
           <Tabs.List className="mt-6 flex w-full items-center gap-4 border-b border-zinc-200 dark:border-zinc-700">
             <TabItem
+              disabled={loading}
               value="tab1"
               title="Todos"
               isSelected={currentTab === 'tab1'}
             />
             <TabItem
+              disabled={loading}
               value="tab2"
               title="Front-end"
               isSelected={currentTab === 'tab2'}
             />
             <TabItem
+              disabled={loading}
               value="tab3"
               title="Back-end"
               isSelected={currentTab === 'tab3'}
             />
             <TabItem
+              disabled={loading}
               value="tab4"
               title="Serviços"
               isSelected={currentTab === 'tab4'}
@@ -60,9 +68,26 @@ export function SkillsFilterTabs() {
           </Tabs.List>
           <TabContent value="tab1">
             <ContentWrapper>
-              {data?.skills.map((item) => (
-                <SkillBadge key={item.id} title={item.skill} />
-              ))}
+              {loading ? (
+                <>
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                  <SkeletonSkills />
+                </>
+              ) : (
+                <>
+                  {data?.skills.map((item) => (
+                    <SkillBadge key={item.id} title={item.skill} />
+                  ))}
+                </>
+              )}
             </ContentWrapper>
           </TabContent>
           <TabContent value="tab2">

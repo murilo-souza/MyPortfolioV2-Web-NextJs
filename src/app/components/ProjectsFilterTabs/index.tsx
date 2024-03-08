@@ -2,12 +2,13 @@
 
 import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { TabItem } from './tab-item'
+import { TabItem } from '../Tabs/tab-item'
 import { useState } from 'react'
-import { TabContent } from './tab-content'
+import { TabContent } from '../Tabs/tab-content'
 import { CardProject } from '../card-project'
 import { gql, useQuery } from '@apollo/client'
 import { ContentWrapper } from './content-wrapper'
+import { SkeletonCard } from '../Loader/skeleton-card'
 
 const GET_CARDS_QUERY = gql`
   query MyQuery {
@@ -37,7 +38,7 @@ export interface CardProps {
 export function ProjectsFilterTabs() {
   const [currentTab, setCurrentTab] = useState('tab1')
 
-  const { data } = useQuery<{ cards: CardProps[] }>(GET_CARDS_QUERY, {
+  const { data, loading } = useQuery<{ cards: CardProps[] }>(GET_CARDS_QUERY, {
     fetchPolicy: 'cache-and-network',
   })
 
@@ -47,16 +48,19 @@ export function ProjectsFilterTabs() {
         <ScrollArea.Viewport className="w-full overflow-x-scroll">
           <Tabs.List className="mt-6 flex w-full items-center gap-4 border-b border-zinc-200 dark:border-zinc-700 sticky top-0">
             <TabItem
+              disabled={loading}
               value="tab1"
               title="Todos"
               isSelected={currentTab === 'tab1'}
             />
             <TabItem
+              disabled={loading}
               value="tab2"
               title="Web"
               isSelected={currentTab === 'tab2'}
             />
             <TabItem
+              disabled={loading}
               value="tab3"
               title="Mobile"
               isSelected={currentTab === 'tab3'}
@@ -64,18 +68,31 @@ export function ProjectsFilterTabs() {
           </Tabs.List>
           <TabContent value="tab1">
             <ContentWrapper>
-              {data?.cards.map((card) => (
-                <CardProject
-                  key={card.title}
-                  bannerUrl={card.bannerUrl}
-                  title={card.title}
-                  description={card.description}
-                  repoUrl={card.repoUrl}
-                  testUrl={card.testUrl}
-                  stacks={card.stacks}
-                  tag={card.tag}
-                />
-              ))}
+              {loading ? (
+                <>
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
+                </>
+              ) : (
+                <>
+                  {data?.cards.map((card) => (
+                    <CardProject
+                      key={card.title}
+                      bannerUrl={card.bannerUrl}
+                      title={card.title}
+                      description={card.description}
+                      repoUrl={card.repoUrl}
+                      testUrl={card.testUrl}
+                      stacks={card.stacks}
+                      tag={card.tag}
+                    />
+                  ))}
+                </>
+              )}
             </ContentWrapper>
           </TabContent>
           <TabContent value="tab2">
