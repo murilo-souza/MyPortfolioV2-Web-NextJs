@@ -7,11 +7,18 @@ interface TabItemProps {
   value: string
   title: string
   isSelected?: boolean
+  disabled: boolean
 }
 
-export function TabItem({ title, value, isSelected = false }: TabItemProps) {
+export function TabItem({
+  title,
+  value,
+  isSelected = false,
+  disabled,
+}: TabItemProps) {
   return (
     <Tabs.Trigger
+      disabled={disabled}
       value={value}
       className="group relative px-1 pb-4 text-sm font-medium text-zinc-500 outline-none hover:text-violet-700 data-[state=active]:text-violet-700  dark:text-zinc-400 dark:hover:text-violet-300 dark:data-[state=active]:text-violet-300"
     >
