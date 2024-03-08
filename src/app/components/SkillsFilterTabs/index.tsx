@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { TabContent } from './tab-content'
 import { SkillBadge } from '../skill-badge'
 import { gql, useQuery } from '@apollo/client'
+import { ContentWrapper } from './content-wrapper'
 
 const GET_SKILL_QUERY = gql`
   query MyQuery {
@@ -58,32 +59,32 @@ export function SkillsFilterTabs() {
             />
           </Tabs.List>
           <TabContent value="tab1">
-            <div className="flex flex-wrap gap-2">
+            <ContentWrapper>
               {data?.skills.map((item) => (
                 <SkillBadge key={item.id} title={item.skill} />
               ))}
-            </div>
+            </ContentWrapper>
           </TabContent>
           <TabContent value="tab2">
-            <div className="flex flex-wrap gap-2">
+            <ContentWrapper>
               {data?.skills
                 .filter((item) => item.tag === 'front' || item.tag === 'both')
                 .map((item) => <SkillBadge key={item.id} title={item.skill} />)}
-            </div>
+            </ContentWrapper>
           </TabContent>
           <TabContent value="tab3">
-            <div className="flex flex-wrap gap-2">
+            <ContentWrapper>
               {data?.skills
                 .filter((item) => item.tag === 'back' || item.tag === 'both')
                 .map((item) => <SkillBadge key={item.id} title={item.skill} />)}
-            </div>
+            </ContentWrapper>
           </TabContent>
           <TabContent value="tab4">
-            <div className="flex flex-wrap gap-2">
+            <ContentWrapper>
               {data?.skills
                 .filter((item) => item.tag === 'service')
                 .map((item) => <SkillBadge key={item.id} title={item.skill} />)}
-            </div>
+            </ContentWrapper>
           </TabContent>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
