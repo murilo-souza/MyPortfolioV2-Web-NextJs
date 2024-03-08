@@ -12,13 +12,13 @@ export default function Home() {
       <h1
         className={twMerge(
           'hidden',
-          'lg:block lg:text-3xl lg:font-medium lg:text-zinc-900',
+          'lg:block lg:text-3xl lg:font-medium lg:text-zinc-900 lg:mb-4',
           'dark:text-zinc-100',
         )}
       >
         Inicio
-        <div className="w-full h-px bg-zinc-600" />
       </h1>
+      <div className="w-full h-px bg-zinc-600" />
 
       <MyInformation />
     </>
