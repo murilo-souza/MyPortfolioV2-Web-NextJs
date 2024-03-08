@@ -9,9 +9,8 @@ import { CardProps } from './ProjectsFilterTabs'
 import { motion } from 'framer-motion'
 
 const item = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { opacity: 0 },
   visible: {
-    y: 0,
     opacity: 1,
   },
 }

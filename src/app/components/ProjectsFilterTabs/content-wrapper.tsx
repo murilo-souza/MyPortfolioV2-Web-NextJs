@@ -2,10 +2,9 @@ import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
 const container = {
-  hidden: { opacity: 1, scale: 0 },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
-    scale: 1,
     transition: {
       delayChildren: 0.1,
       staggerChildren: 0.1,
