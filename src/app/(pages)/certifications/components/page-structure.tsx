@@ -13,7 +13,7 @@ interface KnowledgeCardProps {
   tag: 'acf' | 'ctc'
 }
 
-const GET_CARDS_QUERY = gql`
+const GET_CERTIFICATIONS_QUERY = gql`
   query MyQuery {
     certifications(first: 100, orderBy: start_DESC) {
       college
@@ -29,7 +29,7 @@ const GET_CARDS_QUERY = gql`
 
 export function PageStructure() {
   const { data } = useQuery<{ certifications: KnowledgeCardProps[] }>(
-    GET_CARDS_QUERY,
+    GET_CERTIFICATIONS_QUERY,
     {
       fetchPolicy: 'cache-and-network',
     },
