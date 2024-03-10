@@ -5,7 +5,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { TabItem } from '../Tabs/tab-item'
 import { useState } from 'react'
 import { TabContent } from '../Tabs/tab-content'
-import { CardProject } from '../card-project'
+import { CardProject } from '../Modal/card-project'
 import { gql, useQuery } from '@apollo/client'
 import { ContentWrapper } from './content-wrapper'
 import { SkeletonCard } from '../Loader/skeleton-card'
@@ -26,6 +26,7 @@ const GET_CARDS_QUERY = gql`
 `
 
 export interface CardProps {
+  id: string
   bannerUrl: string
   title: string
   description: string
@@ -81,6 +82,7 @@ export function ProjectsFilterTabs() {
                 <>
                   {data?.cards.map((card) => (
                     <CardProject
+                      id={card.id}
                       key={card.title}
                       bannerUrl={card.bannerUrl}
                       title={card.title}
@@ -101,6 +103,7 @@ export function ProjectsFilterTabs() {
                 .filter((card) => card.tag === 'web')
                 .map((card) => (
                   <CardProject
+                    id={card.id}
                     key={card.title}
                     bannerUrl={card.bannerUrl}
                     title={card.title}
@@ -119,6 +122,7 @@ export function ProjectsFilterTabs() {
                 .filter((card) => card.tag === 'mobile')
                 .map((card) => (
                   <CardProject
+                    id={card.id}
                     key={card.title}
                     bannerUrl={card.bannerUrl}
                     title={card.title}
