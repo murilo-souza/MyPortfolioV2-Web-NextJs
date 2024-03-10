@@ -7,8 +7,11 @@ import { Button } from '../button'
 import { Download, Menu, Search } from 'lucide-react'
 import * as Input from '../input'
 import { MainNavigation } from './MainNavigation'
+import { useState } from 'react'
 
 export function Sidebar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <Collapsible.Root
       className={twMerge(
@@ -16,11 +19,12 @@ export function Sidebar() {
         'lg:right-auto lg:w-80 lg:overflow-y-auto lg:border-r lg:px-5 lg:py-8 lg:data-[state=closed]:bottom-0 lg:[&::-webkit-scrollbar]:hidden',
         'dark:border-zinc-800 dark:bg-zinc-900',
       )}
+      open={menuOpen}
     >
       <div className="flex items-center justify-between">
         <Logo />
         <Collapsible.Trigger className="lg:hidden" asChild>
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={() => setMenuOpen(!menuOpen)}>
             <Menu className="h-6 w-6" />
           </Button>
         </Collapsible.Trigger>
@@ -37,7 +41,7 @@ export function Sidebar() {
           <Input.Control placeholder="Search" />
         </Input.Root>
 
-        <MainNavigation />
+        <MainNavigation onClose={() => setMenuOpen(false)} />
 
         <div className="mt-auto">
           <a
