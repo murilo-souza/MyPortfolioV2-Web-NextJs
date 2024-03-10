@@ -37,7 +37,7 @@ export function PageStructure() {
   return (
     <div className="mt-14">
       <ContentWrapper title="Experiência profissional">
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {loading ? (
             <>
               <SkeletonCertification />
