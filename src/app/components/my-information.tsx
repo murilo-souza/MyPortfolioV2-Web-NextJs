@@ -5,6 +5,8 @@ import { twMerge } from 'tailwind-merge'
 import { ContactButton } from './contact-button'
 import { Github, Linkedin, Mail, Phone } from 'lucide-react'
 import { gql, useQuery } from '@apollo/client'
+import { SkeletonMe } from './Loader/Home/skeleton-me'
+import { SkeletonContact } from './Loader/Home/skeleton-contact'
 
 interface MeProps {
   me: string
@@ -53,9 +55,13 @@ export function MyInformation() {
         />
         <h2 className="font-semibold text-2xl text-zinc-100">Sobre mim</h2>
         <br />
-        <p className="text-zinc-100 text-justify text-xl">
-          {data?.information.me}
-        </p>
+        {loading ? (
+          <SkeletonMe />
+        ) : (
+          <p className="text-zinc-100 text-justify text-xl">
+            {data?.information.me}
+          </p>
+        )}
       </div>
       <Image
         src="/me.png"
@@ -71,26 +77,37 @@ export function MyInformation() {
           Informações de contato
         </h2>
         <div className="lg:grid lg:grid-cols-2 flex flex-col mt-5 gap-5">
-          <ContactButton
-            redirectTo={data?.information.linkedInUrl ?? ''}
-            icon={Linkedin}
-            title="LinkedIn"
-          />
-          <ContactButton
-            redirectTo={`mailto:${data?.information.eMail}`}
-            icon={Mail}
-            title={data?.information.eMail ?? ''}
-          />
-          <ContactButton
-            redirectTo={data?.information.gitHubUrl ?? ''}
-            icon={Github}
-            title="GitHub"
-          />
-          <ContactButton
-            redirectTo={`https://api.whatsapp.com/send?phone=${data?.information.phoneToWhatsapp}&app_absent=1`}
-            icon={Phone}
-            title={data?.information.phone ?? ''}
-          />
+          {loading ? (
+            <>
+              <SkeletonContact />
+              <SkeletonContact />
+              <SkeletonContact />
+              <SkeletonContact />
+            </>
+          ) : (
+            <>
+              <ContactButton
+                redirectTo={data?.information.linkedInUrl ?? ''}
+                icon={Linkedin}
+                title="LinkedIn"
+              />
+              <ContactButton
+                redirectTo={`mailto:${data?.information.eMail}`}
+                icon={Mail}
+                title={data?.information.eMail ?? ''}
+              />
+              <ContactButton
+                redirectTo={data?.information.gitHubUrl ?? ''}
+                icon={Github}
+                title="GitHub"
+              />
+              <ContactButton
+                redirectTo={`https://api.whatsapp.com/send?phone=${data?.information.phoneToWhatsapp}&app_absent=1`}
+                icon={Phone}
+                title={data?.information.phone ?? ''}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
