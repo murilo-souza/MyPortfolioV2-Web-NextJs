@@ -1,13 +1,10 @@
-'use client'
-
 import { ReactNode } from 'react'
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../lib/apollo'
+import { ApolloContextProvider } from '../context/apolloContext'
 
 export default function StoreLayout({ children }: { children: ReactNode }) {
   return (
-    <ApolloProvider client={client}>
+    <ApolloContextProvider>
       <div>{children}</div>
-    </ApolloProvider>
+    </ApolloContextProvider>
   )
 }
