@@ -30,7 +30,7 @@ export function PageStructure() {
   const { data, loading } = useQuery<{ experiences: KnowledgeCardProps[] }>(
     GET_EXPERIENCES_QUERY,
     {
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
     },
   )
 
