@@ -18,7 +18,7 @@ export default function Home() {
       >
         Inicio
       </h1>
-      <div className="w-full h-px bg-zinc-600" />
+      <div className="w-full h-px bg-zinc-600 hidden lg:block" />
 
       <MyInformation />
     </>

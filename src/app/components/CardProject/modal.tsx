@@ -23,7 +23,7 @@ export function Modal({ card, onClose, selectedId }: ModalProps) {
           layoutId={selectedId}
           className={twMerge(
             'bg-zinc-800 border border-zinc-700 p-2 flex flex-col gap-2 overflow-y-auto',
-            'fixed top-8 left-[35%] right-[35%] lg:max-w-[450px] lg:max-h-[90vh] rounded-[10px] focus:outline-none',
+            'fixed inset-0 lg:top-8 lg:left-[35%] lg:right-[35%] lg:max-w-[450px] lg:max-h-[90vh] rounded-[10px] focus:outline-none',
           )}
         >
           <Image

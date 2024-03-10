@@ -36,7 +36,7 @@ export function PageStructure() {
     },
   )
   return (
-    <div className="flex gap-10 mt-14">
+    <div className="flex flex-col lg:flex-row gap-10 mt-14">
       <ContentWrapper title="Formação Acadêmica">
         {loading ? (
           <>
@@ -60,7 +60,7 @@ export function PageStructure() {
           </>
         )}
       </ContentWrapper>
-      <div className="w-0.5 bg-zinc-700 " />
+      <div className="w-0.5 bg-zinc-700 hidden lg:block" />
       <ContentWrapper title="Certificações">
         {loading ? (
           <>
