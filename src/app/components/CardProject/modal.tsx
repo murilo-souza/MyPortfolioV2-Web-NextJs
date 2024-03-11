@@ -55,7 +55,7 @@ export function Modal({ card, onClose, selectedId }: ModalProps) {
             <motion.a
               href={card.repoUrl}
               target="_blank"
-              className="flex items-center justify-center gap-2 bg-github px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
+              className="flex items-center justify-center gap-2 bg-github px-3 py-2 min-w-[170px] text-zinc-200 rounded-md"
             >
               <Github />
               Repositório
@@ -65,7 +65,7 @@ export function Modal({ card, onClose, selectedId }: ModalProps) {
               <motion.a
                 href={card.testUrl}
                 target="_blank"
-                className="flex items-center justify-center gap-2 bg-violet-600 px-7 py-2 lg:px-11 lg:py-3 text-zinc-200 rounded-md"
+                className="flex items-center justify-center gap-2 bg-violet-600 px-3 py-2 min-w-[170px] text-zinc-200 rounded-md"
               >
                 <TestTube2 />
                 Testar
@@ -77,7 +77,7 @@ export function Modal({ card, onClose, selectedId }: ModalProps) {
             className="absolute top-5 right-5 outline-none"
             onClick={onClose}
           >
-            <X className="h-7 w-7 text-zinc-200" />
+            <X className="h-7 w-7 text-zinc-400" />
           </motion.button>
         </motion.div>
       </motion.div>
