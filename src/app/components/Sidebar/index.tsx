@@ -7,10 +7,33 @@ import { Button } from '../button'
 import { Download, Menu, Search } from 'lucide-react'
 import * as Input from '../input'
 import { MainNavigation } from './MainNavigation'
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const query = searchParams.get('q')
+
+  function handleSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const data = Object.fromEntries(formData)
+
+    const query = data.q
+
+    if (!query) {
+      return null
+    }
+
+    router.push(`/search?q=${query}`)
+
+    setMenuOpen(false)
+  }
 
   return (
     <Collapsible.Root
@@ -34,12 +57,18 @@ export function Sidebar() {
         forceMount
         className="flex flex-1 flex-col gap-6 data-[state=closed]:hidden lg:data-[state=closed]:flex"
       >
-        <Input.Root>
-          <Input.Prefix>
-            <Search className="h-5 w-5 text-zinc-500" />
-          </Input.Prefix>
-          <Input.Control placeholder="Search" />
-        </Input.Root>
+        <form onSubmit={handleSearch}>
+          <Input.Root>
+            <Input.Prefix>
+              <Search className="h-5 w-5 text-zinc-500" />
+            </Input.Prefix>
+            <Input.Control
+              name="q"
+              placeholder="Pesquisar tecnologia"
+              defaultValue={query ?? ''}
+            />
+          </Input.Root>
+        </form>
 
         <MainNavigation onClose={() => setMenuOpen(false)} />
 
