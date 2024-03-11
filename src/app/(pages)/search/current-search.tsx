@@ -8,7 +8,7 @@ export function CurrentSearch() {
   const query = searchParams.get('q')
   return (
     <p className="text-lg">
-      Resultando para: <span className="font-semibold">{query}</span>
+      Resultado para: <span className="font-semibold">{query}</span>
     </p>
   )
 }
