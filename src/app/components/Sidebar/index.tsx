@@ -4,36 +4,13 @@ import { twMerge } from 'tailwind-merge'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { Logo } from './logo'
 import { Button } from '../button'
-import { CornerDownLeft, Download, Menu, Search } from 'lucide-react'
-import * as Input from '../input'
+import { Download, Menu } from 'lucide-react'
 import { MainNavigation } from './MainNavigation'
-import { useState, FormEvent, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useState, Suspense } from 'react'
+import { SearchForm } from '../search-form'
 
 export function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false)
-
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  const query = searchParams.get('q')
-
-  function handleSearch(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const formData = new FormData(event.currentTarget)
-    const data = Object.fromEntries(formData)
-
-    const query = data.q
-
-    if (!query) {
-      return null
-    }
-
-    router.push(`/search?q=${query}`)
-
-    setMenuOpen(false)
-  }
 
   return (
     <Collapsible.Root
@@ -58,23 +35,7 @@ export function Sidebar() {
         className="flex flex-1 flex-col gap-6 data-[state=closed]:hidden lg:data-[state=closed]:flex"
       >
         <Suspense fallback={null}>
-          <form onSubmit={handleSearch}>
-            <Input.Root>
-              <Input.Prefix>
-                <Search className="h-5 w-5 text-zinc-500" />
-              </Input.Prefix>
-
-              <Input.Control
-                name="q"
-                placeholder="Pesquisar tecnologia"
-                defaultValue={query ?? ''}
-              />
-
-              <Input.Suffix type="submit">
-                <CornerDownLeft className="h-5 w-5 text-zinc-500" />
-              </Input.Suffix>
-            </Input.Root>
-          </form>
+          <SearchForm closeModal={() => setMenuOpen(false)} />
         </Suspense>
 
         <MainNavigation onClose={() => setMenuOpen(false)} />
