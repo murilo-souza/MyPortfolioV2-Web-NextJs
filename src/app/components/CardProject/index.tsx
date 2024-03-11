@@ -7,11 +7,19 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Modal } from './modal'
 
+const item = {
+  hidden: { opacity: 0.25 },
+  visible: {
+    opacity: 1,
+  },
+}
+
 export function CardProject(card: CardProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   return (
     <>
       <motion.div
+        variants={item}
         layoutId={card.id}
         className="p-1 bg-zinc-800 border border-zinc-700 rounded-[10px] flex flex-col gap-3"
       >
