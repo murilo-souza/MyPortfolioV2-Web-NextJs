@@ -1,6 +1,11 @@
+import Link from 'next/link'
+
 export function Logo() {
   return (
-    <strong className="mx-1 flex items-center gap-2 text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+    <Link
+      href="/"
+      className="mx-1 flex items-center gap-2 text-xl font-semibold text-zinc-900 dark:text-zinc-100"
+    >
       <svg
         width={32}
         height={32}
@@ -15,6 +20,6 @@ export function Logo() {
         />
       </svg>
       <span>My Portfolio</span>
-    </strong>
+    </Link>
   )
 }
