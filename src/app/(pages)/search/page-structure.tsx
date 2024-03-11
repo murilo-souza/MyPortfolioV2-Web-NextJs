@@ -30,7 +30,7 @@ export function PageStructure({ query }: PageStructureProps) {
   })
 
   return (
-    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-14">
+    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-8">
       {loading ? (
         <>
           <SkeletonCard />
