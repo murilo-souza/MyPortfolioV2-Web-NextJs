@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { Logo } from './logo'
 import { Button } from '../button'
-import { Download, Menu, Search } from 'lucide-react'
+import { CornerDownLeft, Download, Menu, Search } from 'lucide-react'
 import * as Input from '../input'
 import { MainNavigation } from './MainNavigation'
 import { useState, FormEvent } from 'react'
@@ -62,11 +62,16 @@ export function Sidebar() {
             <Input.Prefix>
               <Search className="h-5 w-5 text-zinc-500" />
             </Input.Prefix>
+
             <Input.Control
               name="q"
               placeholder="Pesquisar tecnologia"
               defaultValue={query ?? ''}
             />
+
+            <Input.Suffix type="submit">
+              <CornerDownLeft className="h-5 w-5 text-zinc-500" />
+            </Input.Suffix>
           </Input.Root>
         </form>
 
