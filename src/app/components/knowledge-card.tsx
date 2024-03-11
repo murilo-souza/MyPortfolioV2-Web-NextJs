@@ -21,7 +21,9 @@ export function KnowledgeCard({
   )
 
   return (
-    <div className="border border-zinc-600 p-4 rounded-md lg:max-w-[40vw] ">
+    <div
+      className={`border border-zinc-600 p-4 rounded-md lg:max-w-[40vw] ${isShowingMore ? 'block' : 'lg:h-56 2xl:h-48 overflow-hidden'}`}
+    >
       <div className="mb-5">
         <h3 className="text-zinc-200 text-xl font-semibold">{title}</h3>
         <span className="text-zinc-400 text-sm">
