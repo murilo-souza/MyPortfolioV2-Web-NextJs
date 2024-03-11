@@ -34,7 +34,7 @@ export function MyInformation() {
   const { data, loading } = useQuery<{ information: MeProps }>(
     GET_MY_INFO_QUERY,
     {
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
     },
   )
   return (
@@ -58,7 +58,7 @@ export function MyInformation() {
         {loading ? (
           <SkeletonMe />
         ) : (
-          <p className="text-zinc-100 text-justify text-xl">
+          <p className="text-zinc-100 text-left text-xl">
             {data?.information.me}
           </p>
         )}

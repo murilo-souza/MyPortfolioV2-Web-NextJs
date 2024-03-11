@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { JetBrains_Mono as JetBrainsMono } from 'next/font/google'
 import './globals.css'
 import { Sidebar } from './components/Sidebar'
 import { twMerge } from 'tailwind-merge'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = JetBrainsMono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={font.className}>
         <div
           className={twMerge(
             'min-h-screen antialiased text-zinc-900',
