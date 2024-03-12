@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { CurrentSearch } from './current-search'
 import { PageStructure } from './page-structure'
 
@@ -5,6 +6,10 @@ interface SearchProps {
   searchParams: {
     q: string
   }
+}
+
+export const metadata: Metadata = {
+  title: 'Pesquisa',
 }
 
 export default function Search({ searchParams }: SearchProps) {

@@ -1,4 +1,9 @@
 import { SkillsFilterTabs } from '@/app/components/SkillsFilterTabs'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Habilidades',
+}
 
 export default function Skills() {
   return (

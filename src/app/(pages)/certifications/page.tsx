@@ -1,4 +1,9 @@
+import { Metadata } from 'next'
 import { PageStructure } from './components/page-structure'
+
+export const metadata: Metadata = {
+  title: 'Certificações',
+}
 
 export default function Certifications() {
   return (

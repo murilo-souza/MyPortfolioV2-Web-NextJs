@@ -1,4 +1,9 @@
 import { ProjectsFilterTabs } from '@/app/components/ProjectsFilterTabs'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Projetos',
+}
 
 export default function Projects() {
   return (
